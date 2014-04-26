@@ -42,4 +42,18 @@ var PrependAdMixin = AdMixinFactory(function(self, adUnit) {
   return function() { self.$().prepend(adUnit.$()); };
 });
 
+var AfterAdMixin = AdMixinFactory(function(self, adUnit) {
+  return function() { self.$().append(adUnit.$()); };
+});
+
+var BeforeAdMixin = AdMixinFactory(function(self, adUnit) {
+  return function() { self.$().before(adUnit.$()); };
+});
+
+var AfterUserAboutAdMixin = AdMixinFactory(function(self, adUnit) {
+  return function() { self.$(".user-main .about").after(adUnit.$()); };
+});
+
 Discourse.DiscoveryTopicsView.reopen(PrependAdMixin);
+Discourse.TopicFooterButtonsView.reopen(AfterAdMixin);
+Discourse.UserView.reopen(AfterUserAboutAdMixin);
