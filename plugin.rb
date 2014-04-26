@@ -3,5 +3,5 @@
 # version: 0.1
 # authors: Vikhyat Korrapati
 
-register_asset "javascripts/ad_unit_component.js"
-register_asset "stylesheets/ad_unit.scss"
+register_asset "javascripts/ad_units.js"
+register_asset "stylesheets/ad_units.scss"
