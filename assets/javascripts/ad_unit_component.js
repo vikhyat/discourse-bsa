@@ -20,15 +20,26 @@ var AdUnitComponent = Ember.Component.extend({
   }
 });
 
-Discourse.DiscoveryTopicsView.reopen({
-  injectAd: function() {
-    var self = this;
+var AdMixinFactory = function(insertFunction) {
+  return Ember.Mixin.create({
+    injectAd: function() {
+      var adUnit = this.createChildView(AdUnitComponent);
+      this.set('bsaAdUnit', adUnit);
+      var self = this;
+      adUnit._insertElementLater(insertFunction(this, adUnit));
+    }.on('didInsertElement'),
 
-    self.$(".ad-unit").remove();
-    var AdUnit = self.createChildView(AdUnitComponent);
+    removeAd: function() {
+      if (this.get('bsaAdUnit')) {
+        this.get('bsaAdUnit').destroy();
+        this.set('bsaAdUnit', null);
+      }
+    }.on('willClearRender')
+  });
+};
 
-    AdUnit._insertElementLater(function() {
-      self.$().prepend( AdUnit.$() );
-    });
-  }.on('didInsertElement')
+var PrependAdMixin = AdMixinFactory(function(self, adUnit) {
+  return function() { self.$().prepend(adUnit.$()); };
 });
+
+Discourse.DiscoveryTopicsView.reopen(PrependAdMixin);
