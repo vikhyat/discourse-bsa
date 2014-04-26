@@ -7,8 +7,8 @@
 })();
 
 var AdUnitComponent = Ember.Component.extend({
-  adId: "1293313",
-  adClass: "257f81e798bd68dd81e60f42838f361f",
+  adId: Discourse.computed.setting('bsa_ad_id'),
+  adClass: Discourse.computed.setting('bsa_ad_class'),
   classNames: ['ad-unit', 'container'],
 
   divId: function() { return "bsap_" + this.get('adId'); }.property('adId'),

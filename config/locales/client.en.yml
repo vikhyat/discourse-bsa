@@ -1,0 +1,7 @@
+en:
+  js:
+    admin_js:
+      admin:
+        site_settings:
+          categories:
+            discourse_bsa: "BuySellAds"

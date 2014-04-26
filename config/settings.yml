@@ -1,0 +1,7 @@
+discourse_bsa:
+  bsa_ad_id:
+    default: "1293313"
+    client: true
+  bsa_ad_class:
+    default: "257f81e798bd68dd81e60f42838f361f"
+    client: true
