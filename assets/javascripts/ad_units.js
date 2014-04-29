@@ -15,6 +15,7 @@ var AdUnitComponent = Ember.Component.extend({
   divClass: function() { return "bsarocks bsap_" + this.get('adClass'); }.property('adClass'),
 
   didInsertElement: function() {
+    this.$().attr("aria-hidden", "true");
     this.$().html("<div id='" + this.get('divId') + "' class='" + this.get('divClass') + "'></div>");
     if (typeof(_bsap) !== "undefined") { _bsap.exec(); }
   }
