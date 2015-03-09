@@ -26,8 +26,9 @@ var AdMixinFactory = function(insertFunction) {
     injectAd: function() {
       var adUnit = this.createChildView(AdUnitComponent);
       this.set('bsaAdUnit', adUnit);
-      var self = this;
-      adUnit._insertElementLater(insertFunction(this, adUnit));
+      Ember.run.scheduleOnce('afterRender', this, function() {
+        insertFunction(this, adUnit);
+      });
     }.on('didInsertElement'),
 
     removeAd: function() {
